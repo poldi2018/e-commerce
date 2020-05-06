@@ -1,0 +1,186 @@
+
+
+
+PRE:
+pip3 install django==1.11.24
+sudo pip3 install psycopg2~=2.7.3.1
+sudo pip3 install psycopg2-binary
+sudo pip3 install dj_database_url
+sudo pip3 install django_forms_bootstrap
+sudo pip install whitenoise
+# make django_forms_bootstrap available in templates by using:
+{% load bootstrap_tags %}
+#Installation of virtualenvironment:
+sudo pip install virtualenvwrapper
+source "/usr/local/bin/virtualenvwrapper.sh" or put in ~/.zshrc to load at startup
+mkvirtualenv [name]
+#activation of virtual environment
+cd ~/.virtualenvs/foo
+source bin/activate
+OR: source ~/.virtualenvs/foo/bin/activate
+OR: workon [environment name]
+#use pillow for image handling
+pip install pillow
+
+
+GIT:
+#remove pushed file:
+git rm -r --cached <path/file.ext>
+
+
+
+CREATION OF APP
+# create empty project
+#startproject via django-admin:
+django-admin startproject django_todo .
+#start server:
+python3 manage.py runserver
+# create app:  
+django-admin startapp todo
+#makemigrations:
+python3 manage.py makemigrations
+# migrate:
+python3 manage.py migrate
+
+# set app under INSTALLED_APPS
+# set allowed hosts
+#create superuser:
+python3 manage.py createsuperuser
+
+
+
+SQLITE:
+#start sqlite3:
+sqlite3 db.sqlite3
+#migrate database:
+python3 manage.py migrate
+# display headers:
+.headers on
+#use columns:
+.mode column
+#create superuser:
+python3 manage.py createsuperuser
+
+TESTING:
+coverage run manage.py test
+coverage run --source=todo manage.py test
+coverage report
+coverage html
+
+DEPLOY:
+heroku create poldis-simple-django-todo --region eu
+heroku git:remote -a poldis-simple-django-todo
+heroku addons:create heroku-postgresql:hobby-dev
+heroku config
+# execute after connecting to db:
+python3 manage.py migrate
+
+
+POSTGRESQL:
+To migrate existing data from a previous major version of PostgreSQL run:
+  brew postgresql-upgrade-database
+
+To have launchd start postgresql now and restart at login:
+  brew services start postgresql
+Or, if you don't want/need a background service you can just run:
+  pg_ctl -D /usr/local/var/postgres start
+
+
+
+    """
+    new_item = Item()
+    new_item.name = request.POST.get('name')
+    new_item.done = 'done' in request.POST
+    new_item.save()
+    """
+
+    wget -q https://git.io/v77xs -O /tmp/setup-workspace.sh
+    source /tmp/setup-workspace.sh
+
+    set -e  # we exit on error, but otherwise all the commands are quiet
+sudo pip -q install virtualenvwrapper
+grep -q 'VIRTUALENV_PYTHON' ~/.bashrc || (echo 'export VIRTUALENV_PYTHON=/usr/bin/python3' >>~/.bashrc)
+grep -q 'virtualenvwrapper.sh' ~/.bashrc || (echo 'source /usr/local/bin/virtualenvwrapper.sh' >>~/.bashrc)
+grep -q 'Welcome to your Code Institute' ~/.bashrc || (echo 'echo "Hi $C9_USER, welcome to your Code Institute Python workspace in c9, remember to use the mkvirtualenv and workon commands for your projects"' >>~/.bashrc)
+source ~/.bashrc
+
+
+pip(3) install pipreqs
+pipreqs path/to/project
+
+###################
+Workflow Blog project:
+# start project: 
+django-admin startproject blog div
+# adding executable flag to manage.py:
+chmod +x manage.py
+# perform migration
+./manage.py migrate
+# runserver:
+./manage.py runserver
+
+# prepping .gitignore file:
+echo -e "*.sqlite3\n*.pyc\n__pycache__/\nenv.py" > .gitignore
+
+# travis integration
+grab from 'build unknown' the markdown
+[![Build Status](https://travis-ci.org/poldi2018/django-blog.svg?branch=master)](https://travis-ci.org/poldi2018/django-blog)
+---------
+create .travis.yml file:
+language: python
+python:
+    - "3.4"
+install: "pip install -r requirements.txt"
+script:
+    - SECRET_KEY="whatever" ./manage.py test
+---------
+
+# creation of models and forms
+# perform makemigrations:
+./manage.py makemigrations
+# execute the migration:
+./manage.py migrate
+
+# csrf: cross-site request forgery token
+# creation of superuser:
+./manage.py createsuperuser
+
+#HEROKU:
+# create app
+# provision postgres
+# config vars
+# add libraries:
+sudo pip3 install psycopg2-binary
+sudo pip3 install dj_database_url
+pip3 install django_forms_bootstrap
+# add entry to INSTALLED APPS:
+'django_forms_bootstrap'
+# pip freeze > requirements.txt
+# update DATABASES section in settingsfile and set DATABASE_URL
+# Add  templates directory in TEMPLATES section
+[os.path.join(BASE_DIR, 'templates')]
+# perform makemigrations:
+./manage.py makemigrations
+# execute the migration:
+./manage.py migrate
+# deploy code to heroku:
+# install whitenoise for hosting of static files:
+pip install whitenoise
+# update MIDDLEWARE section:
+'whitenoise.middleware.WhiteNoiseMiddleware',
+# create STATIC_ROOT entry:
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# make entry for checking if DATABSE_URL in os.environ and use that.
+# Create Procfile:
+web: gunicorn blog.wsgi:application
+# install gunicorn library:
+pip install gunicorn
+# update requirements.txt
+# create entry in ALLOWED_HOSTS to reflect heroku.com URL:
+poldis-blog-test-app.herokuapp.com
+# connect to github in heroku dashboard or add git remote url:
+heroku git:remote -a poldis-blog-test-app
+
+
+
+
