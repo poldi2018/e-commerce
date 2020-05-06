@@ -182,5 +182,10 @@ poldis-blog-test-app.herokuapp.com
 heroku git:remote -a poldis-blog-test-app
 
 
+# running tests:
+./manage.py test [application_name]
+# for image upload install pillow
+pip install pillow
+
 
 
