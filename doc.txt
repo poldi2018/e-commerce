@@ -19,6 +19,8 @@ cd ~/.virtualenvs/foo
 source bin/activate
 OR: source ~/.virtualenvs/foo/bin/activate
 OR: workon [environment name]
+# set python version in mkvirtualenv:
+mkvirtualenv -p python3.8 [env-name]
 #use pillow for image handling
 pip install pillow
 
