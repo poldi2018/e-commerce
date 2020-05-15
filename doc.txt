@@ -205,4 +205,47 @@ heroku git:remote -a poldis-blog-test-app
 pip install pillow
 
 
+AWS:
+# create bucket
+# on static hosting:
+# set index and error page
+# create CORS statement
+{
+  "Id": "Policy1589571125340",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1589571104014",
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::poldis-ecommerce/*",
+      "Principal": "*"
+    }
+  ]
+}
+
+# create bucket policy
+# remove restrictions to grant public access
+# IAM: 
+# create group
+# create policy, import managed policy
+# search for AmazonS3FullAccess
+# replace value for 'Resource' key with a list:
+# ["arn:aws:s3:::poldis-ecommerce", "arn:aws:s3:::poldis-ecommerce/*"]
+# add policy to group: select group, permissions tab and attach policy
+# create user with programmatic access
+# add user to group
+# no keys
+# download csv file!
+# test upload in S3 bucket
+
+S3 INTEGRATION in DJANGO:
+#pip3 install django-storages
+#pip3 install boto3
+# add 'storages' under INSTALLED_APPS
+# add secret-keys to env.py
+# ./manage.py collectstatic
+
 
