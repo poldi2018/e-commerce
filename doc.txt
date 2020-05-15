@@ -63,7 +63,18 @@ python3 manage.py migrate
 #create superuser:
 python3 manage.py createsuperuser
 
-TESTING:
+TESTING FLASK:
+unittest, coverage, nose.
+run tests, create reporting:
+nosetests --with-coverage \
+          --cover-package app \
+          --cover-erase \
+          --cover-html \
+          --cover-html-dir htmlcov/
+
+
+
+TESTING DJANGO:
 coverage run manage.py test
 coverage run --source=todo manage.py test
 coverage report
@@ -152,13 +163,17 @@ script:
 # provision postgres
 # config vars
 # add libraries:
+# for conneting to postgres DB:
 sudo pip3 install psycopg2-binary
+# for handling of database_urls:
 sudo pip3 install dj_database_url
 pip3 install django_forms_bootstrap
 # add entry to INSTALLED APPS:
 'django_forms_bootstrap'
 # pip freeze > requirements.txt
-# update DATABASES section in settingsfile and set DATABASE_URL
+# update DATABASES section in settingsfile and set 
+DATABASE_URL = {'default': dj_database_url.parse(os.getenv("DATABASE_URL"))}
+
 # Add  templates directory in TEMPLATES section
 [os.path.join(BASE_DIR, 'templates')]
 # perform makemigrations:
