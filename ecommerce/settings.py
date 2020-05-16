@@ -93,7 +93,10 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 if "DATABASE_URL" in os.environ:
     print("Using Database URL with Postgres")
     DATABASES = {
-        'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
+        'default': dj_database_url.parse(os.getenv('DATABASE_URL')),
+        'TEST': {
+            'NAME': 'mytestdatabase',
+        },
     }
 else:
     print("Database URL not found. Using SQLite instead")
