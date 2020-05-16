@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.org/poldi2018/e-commerce.svg?branch=master)](https://travis-ci.org/poldi2018/e-commerce)
