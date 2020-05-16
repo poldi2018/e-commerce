@@ -4,9 +4,5 @@ python:
 
 install: "pip install -r requirements.txt"
 
-before_script:
-psql -U postgres -c CREATE USER test WITH CREATEUSER PASSWORD 'test';
-psql -U postgres -c ALTER USER test CREATEDB;
-
 script:
 - SECRET_KEY="whatever" ./manage.py test
