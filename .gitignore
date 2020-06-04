@@ -6,3 +6,9 @@ env.py
 #static/
 #media/
 
+media/.DS_Store
+static/.DS_Store
+static/font-awesome/.DS_Store
+templates/.DS_Store
+.DS_Store
+.DS_Store
