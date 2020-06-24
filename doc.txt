@@ -79,6 +79,7 @@ coverage run manage.py test
 coverage run --source=todo manage.py test
 coverage report
 coverage html
+coverage run --omit manage.py,appleshop/wsgi.py,appleshop/settings.py,env.py  --source=./ manage.py test
 
 DEPLOY:
 heroku create poldis-simple-django-todo --region eu
